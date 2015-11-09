@@ -15,10 +15,14 @@ describe('Money', function() {
 
       var twoHundredDollars = oneHundredDollars.add(10000);
 
+      var threeHundredDollars = oneHundredDollars.add(new Money(20000));
+
       assert.equal(10000, oneHundredDollars.getAmount());
       assert.equal(20000, twoHundredDollars.getAmount());
+      assert.equal(30000, threeHundredDollars.getAmount());
       assert.equal(true, oneHundredDollars instanceof Money);
       assert.equal(true, twoHundredDollars instanceof Money);
+      assert.equal(true, threeHundredDollars instanceof Money);
     });
   });
 
@@ -28,10 +32,14 @@ describe('Money', function() {
 
       var zeroDollars = oneHundredDollars.subtract(10000);
 
+      var fiftyDollars = oneHundredDollars.subtract(new Money(5000));
+
       assert.equal(10000, oneHundredDollars.getAmount());
       assert.equal(0, zeroDollars.getAmount());
+      assert.equal(5000, fiftyDollars.getAmount());
       assert.equal(true, oneHundredDollars instanceof Money);
       assert.equal(true, zeroDollars instanceof Money);
+      assert.equal(true, fiftyDollars instanceof Money);
     });
   });
   describe('#multiply()', function () {

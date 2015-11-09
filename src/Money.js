@@ -7,13 +7,21 @@ var Money = function(amountInCents) {
 };
 
 Money.prototype.add = function(amountInCents) {
+  if (amountInCents instanceof Money) {
+    amountInCents = amountInCents.getAmount();
+  }
+
   var newAmount = amountInCents + this.getAmount();
 
   return new Money(newAmount);
 };
 
 Money.prototype.subtract = function(amountInCents) {
-  var newAmount = amountInCents - this.getAmount();
+  if (amountInCents instanceof Money) {
+    amountInCents = amountInCents.getAmount();
+  }
+
+  var newAmount = this.getAmount() - amountInCents;
 
   return new Money(newAmount);
 };
