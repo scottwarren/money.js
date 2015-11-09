@@ -7,6 +7,12 @@ describe('Money', function() {
     var tenDollars = new Money(1000);
 
     assert.equal(1000, tenDollars.getAmount());
+    assert.equal('AUD', tenDollars.getCurrency());
+
+    var USDollar = new Money(100, 'USD');
+    assert.equal('USD', USDollar.getCurrency());
+
+    // @TODO: assert the application throws an error if not passed an integer
   });
 
   describe('#add()', function() {
