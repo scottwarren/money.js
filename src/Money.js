@@ -33,6 +33,12 @@ Money.prototype.add = function(amountInCents) {
   return new Money(newAmount);
 };
 
+/**
+ * Subtraction for Money
+ * @param int|Money amountInCents Either amount in cents as an integer or a Money
+ *                                  instance.
+ * @return Money This avoids ever having issues with objects being modified by reference.
+ */
 Money.prototype.subtract = function(amountInCents) {
   if (amountInCents instanceof Money) {
     amountInCents = amountInCents.getAmount();
@@ -43,22 +49,40 @@ Money.prototype.subtract = function(amountInCents) {
   return new Money(newAmount);
 };
 
+/**
+ * Multiplication for Money
+ * @param int multiplier Used to multiply this.amount.
+ * @return Money This avoids ever having issues with objects being modified by reference.
+ */
 Money.prototype.multiply = function(multiplier) {
   var newAmount = multiplier * this.getAmount();
 
   return new Money(newAmount);
 };
 
+/**
+ * Division for Money
+ * @param int divisor Used to divide this.amount.
+ * @return Money This avoids ever having issues with objects being modified by reference.
+ */
 Money.prototype.divide = function(divisor) {
   var newAmount = this.getAmount() / divisor;
 
   return new Money(newAmount);
 };
 
+/**
+ * Gets the instance variable amount
+ * @return int Amount in lowest whole form
+ */
 Money.prototype.getAmount = function() {
   return this.amount;
 };
 
+/**
+ * Gets the instance variable currency
+ * @return String ISO code for the currency code (eg AUD/USD)
+ */
 Money.prototype.getCurrency = function() {
   return this.currency;
 }
