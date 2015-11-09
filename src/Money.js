@@ -18,14 +18,14 @@ Money.prototype.subtract = function(amountInCents) {
   return new Money(newAmount);
 };
 
-Money.prototype.multiply = function(multiplyBy) {
-  var newAmount = multiplyBy * this.getAmount();
+Money.prototype.multiply = function(multiplier) {
+  var newAmount = multiplier * this.getAmount();
 
   return new Money(newAmount);
 };
 
-Money.prototype.divide = function(divideBy) {
-  var newAmount = this.getAmount() / divideBy;
+Money.prototype.divide = function(divisor) {
+  var newAmount = this.getAmount() / divisor;
 
   return new Money(newAmount);
 };
