@@ -1,37 +1,38 @@
-/**
+class Money {
+  /**
  * Safe handling of money via handling all currency equations.
- * @param int amountInCents Amount of currency represented in it's most whole form,
+ * @param int amountInCents Amount of currency represented in it's most whole form, defaults to 0.
  *                          For example: cents in a Dollar.
  * @param String currency  Three letter ISO currency code, defaults to AUD.
  * @return Money instance of Money with the amountInCents set.
  */
-var Money = function(amountInCents, currency) {
-	if (amountInCents !== parseInt(amountInCents)) {
-		throw('Amount in cents must be passed as an integer');
-	}
-
-  if (!currency) currency = 'AUD';
-
-	this.amount = amountInCents;
-  this.currency = currency;
-};
-
-
-/**
- * Addition for Money
- * @param int|Money amountInCents Either amount in cents as an integer or a Money
- *                                  instance.
- * @return Money This avoids ever having issues with objects being modified by reference.
- */
-Money.prototype.add = function(amountInCents) {
-  if (amountInCents instanceof Money) {
-    amountInCents = amountInCents.getAmount();
+  constructor(amount = 0, currency = 'AUD') {
+    this.amount = amount;
+    this.currency = currency;
   }
-
-  var newAmount = amountInCents + this.getAmount();
-
-  return new Money(newAmount);
-};
+  
+ /**
+  * Gets the instance variable amount
+  * @return int Amount in lowest whole form
+  */
+  getAmount() { return this.amount }
+  
+ /**
+  * Addition for Money
+  * @param int|Money amountInCents Either amount in cents as an integer or a Money
+  *                                  instance.
+  * @return Money This avoids ever having issues with objects being modified by reference.
+  */
+  add(amountToAdd) {
+    let amount = amountToAdd;
+    
+    if (amountToAdd instanceof Money) {
+      let amount = amountToAdd.getAmount();
+    }
+    
+    return new Money(this.getAmount() + amount);
+  }
+}
 
 /**
  * Subtraction for Money
@@ -69,14 +70,6 @@ Money.prototype.divide = function(divisor) {
   var newAmount = this.getAmount() / divisor;
 
   return new Money(newAmount);
-};
-
-/**
- * Gets the instance variable amount
- * @return int Amount in lowest whole form
- */
-Money.prototype.getAmount = function() {
-  return this.amount;
 };
 
 /**
